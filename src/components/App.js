@@ -4,22 +4,26 @@ import NewTaskForm from "./NewTaskForm";
 import TaskList from "./TaskList";
 
 import { CATEGORIES, TASKS } from "../data";
+console.log("Here's the data you're working with");
+console.log({ CATEGORIES, TASKS });
 
 function App() {
   const [tasks, setTasks] = useState(TASKS);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // Function to handle adding new tasks
-  const handleAddTask = (newTask) => {
-    setTasks([...tasks, { ...newTask, id: Date.now() }]);
+  const handleAddTask = (text, category) => {
+    const newTask = {
+      id: Date.now(),
+      text: text,
+      category: category,
+    };
+    setTasks([...tasks, newTask]);
   };
 
-  // Function to handle deleting tasks
   const handleDeleteTask = (taskId) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
 
-  // Filter tasks based on selected category
   const filteredTasks =
     selectedCategory === "All"
       ? tasks

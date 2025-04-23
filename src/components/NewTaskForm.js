@@ -3,13 +3,13 @@ import React, { useState } from "react";
 function NewTaskForm({ categories, onAddTask }) {
   const [formData, setFormData] = useState({
     text: "",
-    category: categories[0],
+    category: categories ? categories[0] : "",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.text.trim()) {
-      onAddTask(formData);
+      onAddTask(formData.text, formData.category);
       setFormData({
         text: "",
         category: categories[0],
@@ -37,11 +37,12 @@ function NewTaskForm({ categories, onAddTask }) {
             setFormData({ ...formData, category: e.target.value })
           }
         >
-          {categories.map((category) => (
-            <option key={category} value={category}>
-              {category}
-            </option>
-          ))}
+          {categories &&
+            categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
         </select>
       </label>
       <input type="submit" value="Add task" />
