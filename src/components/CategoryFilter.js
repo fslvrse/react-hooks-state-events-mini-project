@@ -4,13 +4,14 @@ function CategoryFilter({ categories, selectedCategory, onCategoryChange }) {
   return (
     <div className="categories">
       <h5>Category filters</h5>
-      {categories.map((category) => (
+      {/* render <button> elements for each category here */}
+      {categories.map((cat) => (
         <button
-          key={category}
-          onClick={() => onCategoryChange(category)}
-          className={selectedCategory === category ? "selected" : ""}
+          key={cat}
+          className={cat === selectedCategory ? "selected" : ""}
+          onClick={() => onCategoryChange(cat)}
         >
-          {category}
+          {cat}
         </button>
       ))}
     </div>
